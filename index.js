@@ -1,5 +1,36 @@
 const Joi = require('joi');
 const express = require('express');
+const mysql = require('mysql');
+
+
+//create db connection
+const db = mysql.createConnection({
+    host : 'localhost',
+    user : 'testi',
+    password : 'testipassu',
+    database : 'mydb',
+    port : 3306
+});
+
+//connect to db
+db.connect((err) => {
+    if (err) {
+        throw err;
+    }
+    console.log('Connected to the MySQL database...')
+});
+
+//Do a test query
+/*
+let str = 'select * from tili';
+db.query(str, (err,result) => {
+    if(err) throw err;
+    console.log(result);
+});
+*/
+
+//REMEMBER TO CLOSE THE DB CONNECTION!!!
+
 const app = express();
 
 app.use(express.json());
