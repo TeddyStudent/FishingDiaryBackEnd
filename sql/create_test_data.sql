@@ -1,0 +1,98 @@
+# This file is used to create test data to the fishing diary database
+# Last modifed 6.5.2018 by TeddyStudent
+
+
+insert into tili (etunimi,sukunimi,email,kayttajatunnus,salasana) values ('Teddy', 'Student', 'teddystudent@something.com', 'teddy', 'teddypwd');
+insert into tili (etunimi,sukunimi,email,kayttajatunnus,salasana) values ('User1', 'Surname1', 'user1@something.com', 'user1', 'user1pwd');
+insert into tili (etunimi,sukunimi,email,kayttajatunnus,salasana) values ('User2', 'Surname2', 'user2@something.com', 'user2', 'user2pwd');
+insert into tili (etunimi,sukunimi,email,kayttajatunnus,salasana) values ('User3', 'Surname3', 'user3@something.com', 'user3', 'user3pwd');
+insert into tili (etunimi,sukunimi,email,kayttajatunnus,salasana) values ('User4', 'Surname4', 'user4@something.com', 'user4', 'user4pwd');
+
+insert into kalareissu (pvm,paikka,tili_idtili) values (curdate(), 'Längelmävesi', 1);
+insert into kalareissu (pvm,paikka,tili_idtili) values (curdate(), 'Näsijärvi', 1);
+insert into kalareissu (pvm,paikka,tili_idtili) values (curdate(), 'Pyhäjärvi', 1);
+insert into kalareissu (pvm,paikka,tili_idtili) values (curdate(), 'Pielinen', 2);
+insert into kalareissu (pvm,paikka,tili_idtili) values (curdate(), 'Roine', 3);
+insert into kalareissu (pvm,paikka,tili_idtili) values (curdate(), 'Pälkänevesi', 4);
+
+insert into kalalajit (nimi) values ('Ahven');
+insert into kalalajit (nimi) values ('Hauki');
+insert into kalalajit (nimi) values ('Kuha');
+insert into kalalajit (nimi) values ('Lohi');
+insert into kalalajit (nimi) values ('Taimen');
+insert into kalalajit (nimi) values ('allikkosalakka');
+insert into kalalajit (nimi) values ('ankerias');
+insert into kalalajit (nimi) values ('elaska');
+insert into kalalajit (nimi) values ('harjus');
+insert into kalalajit (nimi) values ('harmaanieriä');
+insert into kalalajit (nimi) values ('hietatokko');
+insert into kalalajit (nimi) values ('hopearuutana');
+insert into kalalajit (nimi) values ('härkäsimppu');
+insert into kalalajit (nimi) values ('imukala');
+insert into kalalajit (nimi) values ('isosimppu');
+insert into kalalajit (nimi) values ('isotuulenkala');
+insert into kalalajit (nimi) values ('kampela');
+insert into kalalajit (nimi) values ('karppi');
+insert into kalalajit (nimi) values ('kiiski');
+insert into kalalajit (nimi) values ('kilohaili');
+insert into kalalajit (nimi) values ('kirjoeväsimppu');
+insert into kalalajit (nimi) values ('kirjolohi');
+insert into kalalajit (nimi) values ('kivennuoliainen');
+insert into kalalajit (nimi) values ('kivinilkka');
+insert into kalalajit (nimi) values ('kivisimppu');
+insert into kalalajit (nimi) values ('kolmipiikki');
+insert into kalalajit (nimi) values ('kuore');
+insert into kalalajit (nimi) values ('kymmenpiikki');
+insert into kalalajit (nimi) values ('lahna');
+insert into kalalajit (nimi) values ('liejutokko');
+insert into kalalajit (nimi) values ('made');
+insert into kalalajit (nimi) values ('miekkasärki');
+insert into kalalajit (nimi) values ('muikku');
+insert into kalalajit (nimi) values ('mustatokko');
+insert into kalalajit (nimi) values ('mustatäplätokko');
+insert into kalalajit (nimi) values ('mutu');
+insert into kalalajit (nimi) values ('nieriä');
+insert into kalalajit (nimi) values ('nokkakala');
+insert into kalalajit (nimi) values ('pasuri');
+insert into kalalajit (nimi) values ('piikkikampela');
+insert into kalalajit (nimi) values ('piikkimonni');
+insert into kalalajit (nimi) values ('piikkisimppu');
+insert into kalalajit (nimi) values ('pikkutuulenkala');
+insert into kalalajit (nimi) values ('puronieriä');
+insert into kalalajit (nimi) values ('rasvakala');
+insert into kalalajit (nimi) values ('rantanuoliainen');
+insert into kalalajit (nimi) values ('rantaneula');
+insert into kalalajit (nimi) values ('ruutana');
+insert into kalalajit (nimi) values ('salakka');
+insert into kalalajit (nimi) values ('seipi');
+insert into kalalajit (nimi) values ('seitsenruototokko');
+insert into kalalajit (nimi) values ('siika');
+insert into kalalajit (nimi) values ('silakka');
+insert into kalalajit (nimi) values ('siloneula');
+insert into kalalajit (nimi) values ('sorva');
+insert into kalalajit (nimi) values ('sulkava');
+insert into kalalajit (nimi) values ('suutari');
+insert into kalalajit (nimi) values ('särki');
+insert into kalalajit (nimi) values ('särmäneula');
+insert into kalalajit (nimi) values ('säyne');
+insert into kalalajit (nimi) values ('teisti');
+insert into kalalajit (nimi) values ('toutain');
+insert into kalalajit (nimi) values ('turska');
+insert into kalalajit (nimi) values ('törö');
+insert into kalalajit (nimi) values ('turpa');
+insert into kalalajit (nimi) values ('valkoevätörö');
+insert into kalalajit (nimi) values ('vaskikala');
+insert into kalalajit (nimi) values ('viisipiikki');
+insert into kalalajit (nimi) values ('vimpa');
+
+insert into vieheet (nimi,valmistaja,tyyppi,vari) values ('Hornet','Salmo','Vaappu','Punakelta');
+insert into vieheet (nimi,valmistaja,tyyppi,vari) values ('Hornet','Salmo','Vaappu','Papukaija');
+insert into vieheet (nimi,valmistaja,tyyppi,vari) values ('Hornet','Salmo','Vaappu','Muikku');
+insert into vieheet (nimi,valmistaja,tyyppi,vari) values ('Rapala','Countdown','Vaappu','Muikku');
+insert into vieheet (nimi,valmistaja,tyyppi,vari) values ('Rapala','Shad Rap','Vaappu','Muikku');
+insert into vieheet (nimi,valmistaja,tyyppi,vari) values ('Nils Master','Invincible','Vaappu','Muikku');
+insert into vieheet (nimi,valmistaja,tyyppi,vari) values ('Nils Master','Spearhead','Vaappu','Muikku');
+
+insert into saaliskala (pituus,paino,saantiaika,kalalajit_idkalalajit,vieheet_idvieheet,kalareissu_idkalareissu,kalareissu_tili_idtili) values (35,600,curtime(), 1, 1, 1, 1);
+insert into saaliskala (pituus,paino,saantiaika,kalalajit_idkalalajit,vieheet_idvieheet,kalareissu_idkalareissu,kalareissu_tili_idtili) values (40,750,curtime(), 1, 2, 1, 1);
+insert into saaliskala (pituus,paino,saantiaika,kalalajit_idkalalajit,vieheet_idvieheet,kalareissu_idkalareissu,kalareissu_tili_idtili) values (30,500,curtime(), 1, 2, 1, 1);
