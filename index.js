@@ -48,22 +48,22 @@ app.get('/',(req,res) => {
     res.send('Hello World!!');
 });
 
-//Lets listen GET requests on 'localhost:<port>/api/reissut' and return reissut objects
-app.get('/api/reissut',(req,res) => {
+//Lets listen GET requests on 'localhost:<port>/api/trips' and return reissut objects
+app.get('/api/trips',(req,res) => {
     res.send(reissut);
 });
 
-//Lets listen GET requests on 'localhost:<port>/api/reissut/<id of reissu object>' and return the requested object
-app.get('/api/reissut/:reissuId',(req,res) => {
+//Lets listen GET requests on 'localhost:<port>/api/trips/<id of reissu object>' and return the requested object
+app.get('/api/trips/:reissuId',(req,res) => {
     //find the requested object
     const reissu = reissut.find(c => c.id === parseInt(req.params.reissuId));
     if (!reissu) res.status(404).send('Object was not found!');
     res.send(reissu);
 });
 
-//Lets listen POST requests on 'localhost:<port>/api/reissut' and create the new reissu object
+//Lets listen POST requests on 'localhost:<port>/api/trips' and create the new reissu object
 //reissu object should be in the request body
-app.post('/api/reissut',(req,res) => {
+app.post('/api/trips',(req,res) => {
 
     //validate data, return 400 if error
     const { error } = validoiReissu(req.body);
@@ -81,8 +81,8 @@ app.post('/api/reissut',(req,res) => {
 });
 
 
-//Lets listen PUT requests on 'localhost:<port>/api/reissut/<id of reissu object>' to modify an reissu object
-app.put('/api/reissut/:reissuId',(req,res) => {
+//Lets listen PUT requests on 'localhost:<port>/api/trips/<id of reissu object>' to modify an reissu object
+app.put('/api/trips/:reissuId',(req,res) => {
 
     //find the object, return 404 if error
     const reissu = reissut.find(c => c.id === parseInt(req.params.reissuId));
@@ -101,8 +101,8 @@ app.put('/api/reissut/:reissuId',(req,res) => {
 
 
 
-//Lets listen DELETE requests on 'localhost:<port>/api/reissut/<id of reissu object>' to delete a reissu object
-app.delete('/api/reissut/:reissuId',(req,res) => {
+//Lets listen DELETE requests on 'localhost:<port>/api/trips/<id of reissu object>' to delete a reissu object
+app.delete('/api/trips/:reissuId',(req,res) => {
 
     //find the object, return 404 if error
     const reissu = reissut.find(c => c.id === parseInt(req.params.reissuId));
