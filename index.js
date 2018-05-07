@@ -3,33 +3,38 @@ const express = require('express');
 const mysql = require('mysql');
 
 
-//create db connection
-const db = mysql.createConnection({
-    host : 'localhost',
-    user : 'testi',
-    password : 'testipassu',
-    database : 'mydb',
-    port : 3306
-});
+const isProduction = process.env.NODE_ENV === 'production';
 
-//connect to db
-db.connect((err) => {
-    if (err) {
-        throw err;
-    }
-    console.log('Connected to the MySQL database...')
-});
+if(isProduction){
 
-//Do a test query
-/*
-let str = 'select * from tili';
-db.query(str, (err,result) => {
-    if(err) throw err;
-    console.log(result);
-});
-*/
+    //create db connection
+    const db = mysql.createConnection({
+        host : 'localhost',
+        user : 'testi',
+        password : 'testipassu',
+        database : 'mydb',
+        port : 3306
+    });
 
-//REMEMBER TO CLOSE THE DB CONNECTION!!!
+    //connect to db
+    db.connect((err) => {
+        if (err) {
+            throw err;
+        }
+        console.log('Connected to the MySQL database...')
+    });
+
+    //Do a test query
+    /*
+    let str = 'select * from tili';
+    db.query(str, (err,result) => {
+        if(err) throw err;
+        console.log(result);
+    });
+    */
+
+    //REMEMBER TO CLOSE THE DB CONNECTION!!!
+}
 
 const app = express();
 
@@ -45,6 +50,7 @@ const reissut = [
 
 //Lets listen GET requests on root 'localhost:<port>' and return a message
 app.get('/',(req,res) => {
+    if (!isProduction) console.log(req);
     res.send('Hello World!!');
 });
 
