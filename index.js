@@ -1,10 +1,15 @@
 const Joi = require('joi');
 const express = require('express');
 const mysql = require('mysql');
+const morgan = require('morgan');
 
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+const app = express();
+app.use(express.json());
+
+//Lets to production only stuff inside this if
 if(isProduction){
 
     //create db connection
@@ -34,11 +39,15 @@ if(isProduction){
     */
 
     //REMEMBER TO CLOSE THE DB CONNECTION!!!
+
+} else {
+    //development only staff here
+
+    //activate morgan logger
+    app.use(morgan('combined'));
+
 }
 
-const app = express();
-
-app.use(express.json());
 
 //Create a test data for reissut
 const reissut = [
@@ -50,7 +59,6 @@ const reissut = [
 
 //Lets listen GET requests on root 'localhost:<port>' and return a message
 app.get('/',(req,res) => {
-    if (!isProduction) console.log(req);
     res.send('Hello World!!');
 });
 
