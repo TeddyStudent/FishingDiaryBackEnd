@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const express = require('express');
+const cors = require('cors');
 const mysql = require('mysql');
 const morgan = require('morgan');
 
@@ -7,6 +8,7 @@ const morgan = require('morgan');
 const isProduction = process.env.NODE_ENV === 'production';
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 //Lets to production only stuff inside this if
