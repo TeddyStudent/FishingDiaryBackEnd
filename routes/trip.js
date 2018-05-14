@@ -100,7 +100,16 @@ router.delete('/:tripId',(req,res) => {
 function validateTrip(reissu){
     //use Joi to define validation rules for the name parameter
     const schema = {
-        name: Joi.string().min(1).max(40).required()
+        //name: Joi.string().min(1).max(40).required()
+        pvm: Joi.string().required(),
+        paikka: Joi.string().min(1).max(45).required(),
+        saa: Joi.string().min(1).max(45),
+        tuuli_nopeus: Joi.number().integer().max(100),
+        tuuli_suunta: Joi.string().min(1).max(45),
+        lampotila_ilma: Joi.number().integer().max(100),
+        lampotila_vesi: Joi.number().integer().max(100),
+        tili_idtili: Joi.number().integer().min(1).max(1000).required()
+
     };
     return Joi.validate(reissu, schema);
 };
