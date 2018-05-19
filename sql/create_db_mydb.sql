@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`tili` (
 --  `kayttajatunnus` VARCHAR(45) NOT NULL,
   `salasana` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idtili`),
-  UNIQUE INDEX `kayttajatunnus_UNIQUE` (`kayttajatunnus` ASC))
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
 ENGINE = InnoDB;
 
 
