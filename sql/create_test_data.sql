@@ -1,12 +1,12 @@
 # This file is used to create test data to the fishing diary database
-# Last modifed 6.5.2018 by TeddyStudent
+# Last modifed 19.5.2018 by TeddyStudent
+# tili.kayttajatunnus removed
 
-
-insert into tili (etunimi,sukunimi,email,kayttajatunnus,salasana) values ('Teddy', 'Student', 'teddystudent@something.com', 'teddy', 'teddypwd');
-insert into tili (etunimi,sukunimi,email,kayttajatunnus,salasana) values ('User1', 'Surname1', 'user1@something.com', 'user1', 'user1pwd');
-insert into tili (etunimi,sukunimi,email,kayttajatunnus,salasana) values ('User2', 'Surname2', 'user2@something.com', 'user2', 'user2pwd');
-insert into tili (etunimi,sukunimi,email,kayttajatunnus,salasana) values ('User3', 'Surname3', 'user3@something.com', 'user3', 'user3pwd');
-insert into tili (etunimi,sukunimi,email,kayttajatunnus,salasana) values ('User4', 'Surname4', 'user4@something.com', 'user4', 'user4pwd');
+insert into tili (etunimi,sukunimi,email,salasana) values ('Teddy', 'Student', 'teddystudent@something.com', 'teddypwd');
+insert into tili (etunimi,sukunimi,email,salasana) values ('User1', 'Surname1', 'user1@something.com', 'user1pwd');
+insert into tili (etunimi,sukunimi,email,salasana) values ('User2', 'Surname2', 'user2@something.com', 'user2pwd');
+insert into tili (etunimi,sukunimi,email,salasana) values ('User3', 'Surname3', 'user3@something.com', 'user3pwd');
+insert into tili (etunimi,sukunimi,email,salasana) values ('User4', 'Surname4', 'user4@something.com', 'user4pwd');
 
 insert into kalareissu (pvm,paikka,tili_idtili) values (curdate(), 'Längelmävesi', 1);
 insert into kalareissu (pvm,paikka,tili_idtili) values (curdate(), 'Näsijärvi', 1);
