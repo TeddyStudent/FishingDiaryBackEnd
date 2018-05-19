@@ -4,9 +4,9 @@ var express = require('express')
 
 //test user data
 const tilit = [
-	{ idtili: 1, etunimi: 'Harrison', sukunimi: 'Ford' , email: 'haford@domain.com', kayttajatunnus: 'haford', salasana: 'holygrail' },
-	{ idtili: 2, etunimi: 'Sean', sukunimi: 'Connery' , email: 'seconnery@domain.com', kayttajatunnus: 'seconnery', salasana: 'lastcrusade' },
-	{ idtili: 3, etunimi: 'River', sukunimi: 'Phoenix' , email: 'riphoenix@domain.com', kayttajatunnus: 'riphoenix', salasana: 'standbyme' },
+	{ idtili: 1, etunimi: 'Harrison', sukunimi: 'Ford' , email: 'haford@domain.com', salasana: 'holygrail' },
+	{ idtili: 2, etunimi: 'Sean', sukunimi: 'Connery' , email: 'seconnery@domain.com', salasana: 'lastcrusade' },
+	{ idtili: 3, etunimi: 'River', sukunimi: 'Phoenix' , email: 'riphoenix@domain.com', salasana: 'standbyme' },
 ];
 
 
@@ -40,7 +40,6 @@ router.post('/',(req,res) => {
         etunimi: req.body.etunimi,
         sukunimi: req.body.sukunimi,
         email: req.body.email,
-        kayttajatunnus: req.body.kayttajatunnus,
         salasana: req.body.salasana
     };
     tilit.push(tili);
@@ -66,7 +65,6 @@ router.put('/:userid',(req,res) => {
     tili.etunimi = req.body.etunimi,
     tili.sukunimi = req.body.sukunimi,
     tili.email = req.body.email,
-    tili.kayttajatunnus = req.body.kayttajatunnus,
     tili.salasana = req.body.salasana
     
     //return modified object
@@ -99,7 +97,6 @@ function validateUser(user){
         etunimi: Joi.string().min(1).max(45).required(),
         sukunimi: Joi.string().min(1).max(45).required(),
         email: Joi.string().email(),
-        kayttajatunnus: Joi.string().min(1).max(45).required(),
         salasana: Joi.string().min(1).max(45).required()
     };
     return Joi.validate(user, schema);
