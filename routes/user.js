@@ -16,7 +16,7 @@ router.get('/',(req,res) => {
 });
 
 //GET user with id, return user data
-router.get('/:userid',(req,res) => {
+router.get('/:userId',(req,res) => {
     //res.send('GET/user not yet implemented.');
 
     //find the requested object
@@ -45,12 +45,12 @@ router.post('/',(req,res) => {
     tilit.push(tili);
 
     //Return the object
-    res.send(kalareissu);
+    res.send(tili);
 
 });
 
 //PUT user, return user data
-router.put('/:userid',(req,res) => {
+router.put('/:userId',(req,res) => {
     //res.send('PUT/user not yet implemented.');
 
     //find the object, return 404 if error
@@ -72,7 +72,7 @@ router.put('/:userid',(req,res) => {
 });
 
 //DELETE user, return user data
-router.delete('/:userid',(req,res) => {
+router.delete('/:userId',(req,res) => {
     //res.send('DELETE/user not yet implemented.');
 
     //find the object, return 404 if error
@@ -81,7 +81,7 @@ router.delete('/:userid',(req,res) => {
 
     //delete the object
     const index = tilit.indexOf(tili);
-    tilitt.splice(index,1);
+    tilit.splice(index,1);
 
     //return the same reissu
     res.send(tili);

@@ -31,16 +31,6 @@ if(isProduction){
         console.log('Connected to the MySQL database...')
     });
 
-    //Do a test query
-    /*
-    let str = 'select * from tili';
-    db.query(str, (err,result) => {
-        if(err) throw err;
-        console.log(result);
-    });
-    */
-
-    //REMEMBER TO CLOSE THE DB CONNECTION!!!
 
 } else {
     //development only staff here
@@ -53,119 +43,6 @@ if(isProduction){
 
 //direct routing to ./routes/index.js
 app.use(require('./routes'))
-
-
-//moved to ./routes/trip.js
-//Create a test data for reissut
-/*
-const reissut = [
-    { id: 1, name: 'Reissu1' },
-    { id: 2, name: 'Reissu2' },
-    { id: 3, name: 'Reissu3' },
-];
-*/
-
-
-//Lets listen GET requests on root 'localhost:<port>' and return a message
-//moved to ./routes/index.js
-/*
-app.get('/',(req,res) => {
-    res.send('Hello World!!');
-});
-*/
-
-//moved to ./routes/trip.js 
-//Lets listen GET requests on 'localhost:<port>/api/trips' and return reissut objects
-/*
-app.get('/api/trips',(req,res) => {
-    res.send(reissut);
-});
-*/
-
-//moved to ./routes/trip.js 
-//Lets listen GET requests on 'localhost:<port>/api/trips/<id of reissu object>' and return the requested object
-/*
-app.get('/api/trips/:reissuId',(req,res) => {
-    //find the requested object
-    const reissu = reissut.find(c => c.id === parseInt(req.params.reissuId));
-    if (!reissu) res.status(404).send('Object was not found!');
-    res.send(reissu);
-});
-*/
-
-//moved to ./routes/trip.js 
-//Lets listen POST requests on 'localhost:<port>/api/trips' and create the new reissu object
-//reissu object should be in the request body
-/*
-app.post('/api/trips',(req,res) => {
-
-    //validate data, return 400 if error
-    const { error } = validoiReissu(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
-    
-    //create the new object
-    const reissu = {
-        id: reissut.length + 1,
-        name: req.body.name
-    };
-    reissut.push(reissu);
-
-    //Return the object
-    res.send(reissu);
-});
-*/
-
-//moved to ./routes/trip.js 
-//Lets listen PUT requests on 'localhost:<port>/api/trips/<id of reissu object>' to modify an reissu object
-/*
-app.put('/api/trips/:reissuId',(req,res) => {
-
-    //find the object, return 404 if error
-    const reissu = reissut.find(c => c.id === parseInt(req.params.reissuId));
-    if (!reissu) return res.status(404).send('Object was not found!');
-
-    //validate data, return 400 if error
-    const { error } = validoiReissu(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
-
-    //modify the object
-    reissu.name = req.body.name;
-
-    //return modified object
-    res.send(reissu);
-});
-*/
-
-//moved to ./routes/trip.js 
-//Lets listen DELETE requests on 'localhost:<port>/api/trips/<id of reissu object>' to delete a reissu object
-/*
-app.delete('/api/trips/:reissuId',(req,res) => {
-
-    //find the object, return 404 if error
-    const reissu = reissut.find(c => c.id === parseInt(req.params.reissuId));
-    if (!reissu) return res.status(404).send('Object was not found!');
-
-    //delete the object
-    const index = reissut.indexOf(reissu);
-    reissut.splice(index,1);
-
-    //return the same reissu
-    res.send(reissu);
-    
-});
-*/
-
-//moved to ./routes/*.js (* = user/trip/catch)
-//to avoid multiplying validation code lets use this function for reissu object
-/*
-function validoiReissu(reissu){
-    //use Joi to define validation rules for the name parameter
-    const schema = {
-        name: Joi.string().min(1).max(40).required()
-    };
-    return Joi.validate(reissu, schema);
-};
-*/
 
 
 //use the environment variable PORT if available, otherwise assign port to 3000
