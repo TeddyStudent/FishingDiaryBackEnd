@@ -4,9 +4,9 @@ var express = require('express')
 
 //test data
 const kalareissut = [
-    { idkalareissu: 1, pvm: '2018-05-14', paikka: 'Saimaa', saa: 'pouta', tuuli_nopeus: 5, tuuli_suunta: 'itä', lampotila_ilma: 18, lampotila_vesi: 16, tili_idtili: 1 },
-    { idkalareissu: 1, pvm: '2018-05-13', paikka: 'Pyhäjärvi', saa: 'pilvipouta', tuuli_nopeus: 2, tuuli_suunta: 'etelä', lampotila_ilma: 18, lampotila_vesi: 16, tili_idtili: 1 },
-    { idkalareissu: 1, pvm: '2018-05-14', paikka: 'Pielinen', saa: 'matalapaine', tuuli_nopeus: 7, tuuli_suunta: 'länsi', lampotila_ilma: 18, lampotila_vesi: 16, tili_idtili: 1 },
+    { idkalareissu: 1, pvm: '2018-05-14', paikka: 'Saimaa', saa: 'selkeä', tuuli_nopeus: 5, tuuli_suunta: 'itä', lampotila_ilma: 18, lampotila_vesi: 16, tili_idtili: 1 },
+    { idkalareissu: 2, pvm: '2018-05-13', paikka: 'Pyhäjärvi', saa: 'puolipilvinen', tuuli_nopeus: 2, tuuli_suunta: 'etelä', lampotila_ilma: 18, lampotila_vesi: 16, tili_idtili: 1 },
+    { idkalareissu: 3, pvm: '2018-05-14', paikka: 'Pielinen', saa: 'sadekuuroja', tuuli_nopeus: 7, tuuli_suunta: 'länsi', lampotila_ilma: 18, lampotila_vesi: 16, tili_idtili: 1 },
 ];
 
 
@@ -43,7 +43,7 @@ router.post('/',(req,res) => {
         tuuli_suunta: req.body.tuuli_suunta,
         lampotila_ilma: req.body.lampotila_ilma,
         lampotila_vesi: req.body.lampotila_vesi,
-        tili_idtili: req.body.idtili
+        tili_idtili: req.body.tili_idtili
     };
     kalareissut.push(kalareissu);
 
