@@ -3,34 +3,35 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
 const morgan = require('morgan');
-
-
+const dbconfig = require('./config/database');
+const connection = mysql.createConnection(dbconfig.connection);
 const isProduction = process.env.NODE_ENV === 'production';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+//test db connection
+/*
+connection.connect((err) => {
+    if (err) {
+        throw err;
+    }
+    console.log('Connected to the MySQL database...')
+});
+*/
+
 //Lets to production only stuff inside this if
 if(isProduction){
-
-    //create db connection
-    const db = mysql.createConnection({
-        host : 'localhost',
-        user : 'testi',
-        password : 'testipassu',
-        database : 'mydb',
-        port : 3306
-    });
-
+    
     //connect to db
-    db.connect((err) => {
+    connection.connect((err) => {
         if (err) {
             throw err;
         }
         console.log('Connected to the MySQL database...')
     });
-
 
 } else {
     //development only staff here
