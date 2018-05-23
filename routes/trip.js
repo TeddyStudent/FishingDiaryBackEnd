@@ -1,6 +1,7 @@
 const Joi = require('joi');
 var express = require('express')
   , router = express.Router();
+  var Task=require('../config/Tasks');
 
 //test data
 const kalareissut = [
@@ -13,7 +14,18 @@ const kalareissut = [
 //Lets listen GET requests on 'localhost:<port>/api/trips' and return kalareissut objects
 //Not needed in final application
 router.get('/',(req,res) => {
-    res.send(kalareissut);
+    //res.send(kalareissut);
+
+    //test new TASK concept
+    Task.getAllTrips(function(err,rows){
+		if(err) {
+			res.send(err);
+		}
+		else {
+			res.send(rows);
+		}
+	});
+
 });
 
 

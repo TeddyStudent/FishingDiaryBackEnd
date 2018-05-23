@@ -3,8 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
 const morgan = require('morgan');
-const dbconfig = require('./config/database');
-const connection = mysql.createConnection(dbconfig.connection);
+// const dbconfig = require('./config/database');
+// const connection = mysql.createConnection(dbconfig.connection);
 const isProduction = process.env.NODE_ENV === 'production';
 
 const app = express();
