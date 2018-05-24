@@ -32,7 +32,7 @@ deleteTrip:function(id,callback){
 },
 
 updateTrip:function(id,kalareissu,callback){
-    return db.query("update kalareissu set pvm=?, paikka=?, saa=?, tuuli_nopeus=?, tuuli_suunta=?, lampotila_ilma=?, lampotila_vesi=? where Id=?",[
+    return db.query("update kalareissu set pvm=?, paikka=?, saa=?, tuuli_nopeus=?, tuuli_suunta=?, lampotila_ilma=?, lampotila_vesi=? where idkalareissu=?",[
         kalareissu.pvm,
         kalareissu.paikka,
         kalareissu.saa,

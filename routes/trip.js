@@ -102,8 +102,8 @@ router.post('/',(req,res) => {
 router.put('/:tripId',(req,res) => {
 
     //find the object, return 404 if error
-    const kalareissu = kalareissut.find(c => c.idkalareissu === parseInt(req.params.tripId));
-    if (!kalareissu) return res.status(404).send('Object was not found!');
+    // const kalareissu = kalareissut.find(c => c.idkalareissu === parseInt(req.params.tripId));
+    // if (!kalareissu) return res.status(404).send('Object was not found!');
 
     //validate data, return 400 if error
     const { error } = validateTrip(req.body);
@@ -111,6 +111,7 @@ router.put('/:tripId',(req,res) => {
 
     //modify the object
     //reissu.name = req.body.name;
+    /*
     kalareissu.pvm = req.body.pvm;
     kalareissu.paikka = req.body.paikka;
     kalareissu.saa = req.body.saa;
@@ -118,9 +119,30 @@ router.put('/:tripId',(req,res) => {
     kalareissu.tuuli_suunta = req.body.tuuli_suunta;
     kalareissu.lampotila_ilma = req.body.lampotila_ilma;
     kalareissu.lampotila_vesi = req.body.lampotila_vesi;
-    
+    */
+
     //return modified object
-    res.send(kalareissu);
+    // res.send(kalareissu);
+
+    //test new TASK concept
+    Task.updateTrip(req.params.tripId, req.body, function(err,rows){
+		if(err) {
+			res.send(err);
+		}
+		else {
+            
+            // lets return the actual object data
+            Task.getNewTrip(req.params.tripId, function(err,rows){
+                if(err) {
+                    res.send(err);
+                }
+                else {
+                    res.send(rows);
+                }
+            });
+		}
+	});
+
 });
 
 
@@ -128,16 +150,26 @@ router.put('/:tripId',(req,res) => {
 router.delete('/:tripId',(req,res) => {
 
     //find the object, return 404 if error
-    const kalareissu = kalareissut.find(c => c.idkalareissu === parseInt(req.params.tripId));
-    if (!kalareissu) return res.status(404).send('Object was not found!');
+    //const kalareissu = kalareissut.find(c => c.idkalareissu === parseInt(req.params.tripId));
+    //if (!kalareissu) return res.status(404).send('Object was not found!');
 
     //delete the object
-    const index = kalareissut.indexOf(kalareissu);
-    kalareissut.splice(index,1);
+    //const index = kalareissut.indexOf(kalareissu);
+    //kalareissut.splice(index,1);
 
     //return the same reissu
-    res.send(kalareissu);
+    //res.send(kalareissu);
     
+    //test new TASK concept
+    Task.deleteTrip(req.params.tripId, function(err,rows){
+		if(err) {
+			res.send(err);
+		}
+		else {
+			res.send(rows);
+		}
+	});
+
 });
 
 
