@@ -31,10 +31,20 @@ router.get('/',(req,res) => {
 
 //Lets listen GET requests on 'localhost:<port>/api/trips/<id of reissu object>' and return the requested object
 router.get('/:tripId',(req,res) => {
-    //find the requested object
-    const kalareissu = kalareissut.find(c => c.idkalareissu === parseInt(req.params.tripId));
-    if (!kalareissu) res.status(404).send('Object was not found!');
-    res.send(kalareissu);
+    // find the requested object
+    // const kalareissu = kalareissut.find(c => c.idkalareissu === parseInt(req.params.tripId));
+    // if (!kalareissu) res.status(404).send('Object was not found!');
+    // res.send(kalareissu);
+
+    //test new TASK concept
+    Task.getTripById(req.params.tripId, function(err,rows){
+		if(err) {
+			res.send(err);
+		}
+		else {
+			res.send(rows);
+		}
+	});
 });
 
 //Lets listen POST requests on 'localhost:<port>/api/trips' and create the new reissu object
@@ -46,6 +56,7 @@ router.post('/',(req,res) => {
     if (error) return res.status(400).send(error.details[0].message);
     
     //create the new object
+    /* 
     const kalareissu = {
         idkalareissu: kalareissut.length + 1,
         pvm: req.body.pvm,
@@ -61,6 +72,29 @@ router.post('/',(req,res) => {
 
     //Return the object
     res.send(kalareissu);
+    */
+
+    //test new TASK concept
+    Task.addTrip(req.body, function(err,rows){
+		if(err) {
+			res.send(err);
+		}
+		else {
+            // set http status to 201 Created
+            //res.status(201).send(rows);
+
+            // lets return the actual object data
+            Task.getNewTrip(rows.insertId, function(err,rows){
+                if(err) {
+                    res.send(err);
+                }
+                else {
+                    res.status(201).send(rows);
+                }
+            });
+		}
+	});
+
 });
 
 

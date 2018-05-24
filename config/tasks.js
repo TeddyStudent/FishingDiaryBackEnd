@@ -10,8 +10,12 @@ getTripById:function(id,callback){
     return db.query("select * from kalareissu where tili_idtili=?",[id],callback);
 },
 
+getNewTrip:function(id,callback){
+    return db.query("select * from kalareissu where idkalareissu=?",[id],callback);
+},
+
 addTrip:function(kalareissu,callback){
-    return db.query("Insert into kalareissu values(?,?,?,?,?,?,?,?)",[
+    return db.query("Insert into kalareissu (pvm,paikka,Saa,tuuli_nopeus,tuuli_suunta,lampotila_ilma,lampotila_vesi,tili_idtili) values (?,?,?,?,?,?,?,?)",[
         kalareissu.pvm,
         kalareissu.paikka,
         kalareissu.saa,
@@ -24,7 +28,7 @@ addTrip:function(kalareissu,callback){
 },
 
 deleteTrip:function(id,callback){
-    return db.query("delete from kalareissu where Id=?",[id],callback);
+    return db.query("delete from kalareissu where idkalareissu=?",[id],callback);
 },
 
 updateTrip:function(id,kalareissu,callback){
