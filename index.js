@@ -3,40 +3,20 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
 const morgan = require('morgan');
-// const dbconfig = require('./config/database');
-// const connection = mysql.createConnection(dbconfig.connection);
+
 const isProduction = process.env.NODE_ENV === 'production';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-
-//test db connection
-/*
-connection.connect((err) => {
-    if (err) {
-        throw err;
-    }
-    console.log('Connected to the MySQL database...')
-});
-*/
-
-//Lets to production only stuff inside this if
+// Lets to production only stuff inside this if
 if(isProduction){
-    
-    //connect to db
-    connection.connect((err) => {
-        if (err) {
-            throw err;
-        }
-        console.log('Connected to the MySQL database...')
-    });
+    // production staff here
 
 } else {
-    //development only staff here
-
-    //activate morgan logger
+    // development only staff here
+    // activate morgan logger
     app.use(morgan('combined'));
 
 }
