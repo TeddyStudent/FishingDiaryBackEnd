@@ -11,7 +11,7 @@ const kalareissut = [
 ];
 
 
-//Lets listen GET requests on 'localhost:<port>/api/trips' and return kalareissut objects
+//Lets listen GET requests on 'localhost:<port>/api/trip' and return kalareissut objects
 //Not needed in final application
 router.get('/',(req,res) => {
     //res.send(kalareissut);
@@ -29,15 +29,16 @@ router.get('/',(req,res) => {
 });
 
 
-//Lets listen GET requests on 'localhost:<port>/api/trips/<id of reissu object>' and return the requested object
-router.get('/:tripId',(req,res) => {
+//returns trips by userid
+//userid should derived from authorization data, needs updating later on
+router.get('/:userId',(req,res) => {
     // find the requested object
     // const kalareissu = kalareissut.find(c => c.idkalareissu === parseInt(req.params.tripId));
     // if (!kalareissu) res.status(404).send('Object was not found!');
     // res.send(kalareissu);
 
     //test new TASK concept
-    Task.getTripById(req.params.tripId, function(err,rows){
+    Task.getTripById(req.params.userId, function(err,rows){
 		if(err) {
 			res.send(err);
 		}
@@ -98,7 +99,7 @@ router.post('/',(req,res) => {
 });
 
 
-//Lets listen PUT requests on 'localhost:<port>/api/trips/<id of reissu object>' to modify an reissu object
+//Lets listen PUT requests on 'localhost:<port>/api/trip/<id of reissu object>' to modify an reissu object
 router.put('/:tripId',(req,res) => {
 
     //find the object, return 404 if error
@@ -182,10 +183,10 @@ function validateTrip(reissu){
         pvm: Joi.string().required(),
         paikka: Joi.string().min(1).max(45).required(),
         saa: Joi.string().min(1).max(45),
-        tuuli_nopeus: Joi.number().integer().max(100),
-        tuuli_suunta: Joi.string().min(1).max(45),
-        lampotila_ilma: Joi.number().integer().max(100),
-        lampotila_vesi: Joi.number().integer().max(100),
+        t_nopeus: Joi.number().integer().max(100),
+        t_suunta: Joi.string().min(1).max(45),
+        l_ilma: Joi.number().integer().max(100),
+        l_vesi: Joi.number().integer().max(100),
         tili_idtili: Joi.number().integer().min(1).max(1000).required()
 
     };
