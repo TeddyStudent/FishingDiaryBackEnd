@@ -4,8 +4,35 @@ var express = require('express')
 var Task=require('../config/Tasks');
 
 
-// NOTES:
-// Add userlogin service that validates the username and password and returns user data if login is ok
+
+//End user login, return user data
+router.post('/login',(req,res) => {
+
+    const ktun = req.body.kayttajatunnus;
+    const ssana = req.body.salasana;
+
+    Task.getUserByUsername(ktun, function(err,rows){
+        if(err) {
+            res.send(err);
+        }
+        else {
+            console.log('ktun: ' + ktun);
+            console.log('ssana: ' + ssana);
+            console.log('rows.tunnus: ' + rows[0].kayttajatunnus);
+            console.log('rows.sana: ' + rows[0].salasana);
+            //user was found, if username or pwd does not match return error (401?) else return user data
+            if (ktun != rows[0].kayttajatunnus || ssana != rows[0].salasana) {
+                res.status(401).send(err);
+            }
+            else {
+                res.status(200).send(rows);
+            } 
+        }    
+    });
+
+});
+
+
 
 //GET user, return all users, this is not needed in final application
 router.get('/',(req,res) => {
