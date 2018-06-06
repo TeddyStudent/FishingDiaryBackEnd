@@ -83,8 +83,23 @@ getNewUser:function(id,callback){
 },
 
 // getUserByUsername - needed for authentication, return object (password, idtili and etunimi enough?)
+// **** NOT YET IMPLEMENTED ********
+
+
 // updateUser - needed if account mgmt is implemented, etunimi,sukunimi,kayttajatunnus,salasana can be modified, return object
-// deleteUser - 
+updateUser:function(id,user,callback){
+    return db.query("update tili set etunimi=?, sukunimi=?, kayttajatunnus=?, salasana=? where idtili=?",[
+        user.etunimi,
+        user.sukunimi,
+        user.kayttajatunnus,
+        user.salasana,
+        id],callback);
+},
+
+// deleteUser
+deleteUser:function(id,callback){
+    return db.query("delete from tili where idtili=?",[id],callback);
+}
 
 };
  module.exports=Task;
