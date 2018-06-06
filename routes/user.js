@@ -1,6 +1,11 @@
 const Joi = require('joi');
 var express = require('express')
   , router = express.Router();
+var Task=require('../config/Tasks');
+
+// Edit notes
+// 6.6.2018 - change ../api/user services to use database
+
 
 //test user data
 const tilit = [
@@ -12,7 +17,17 @@ const tilit = [
 
 //GET user, return all users, this is not needed in final application
 router.get('/',(req,res) => {
-    res.send(tilit);
+    // res.send(tilit);
+
+     // use database
+     Task.getAllUsers(function(err,rows){
+		if(err) {
+			res.send(err);
+		}
+		else {
+			res.send(rows);
+		}
+	});
 });
 
 //GET user with id, return user data
@@ -34,6 +49,7 @@ router.post('/',(req,res) => {
     const { error } = validateUser(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     
+    /*
     //create the new object
     const tili = {
         idtili: tilit.length + 1,
@@ -46,6 +62,28 @@ router.post('/',(req,res) => {
 
     //Return the object
     res.send(tili);
+    */
+
+    //use task services
+    Task.addUser(req.body, function(err,rows){
+    if(err) {
+        res.send(err);
+    }
+    else {
+        // set http status to 201 Created
+        //res.status(201).send(rows);
+
+        // lets return the actual object data
+        Task.getNewUser(rows.insertId, function(err,rows){
+            if(err) {
+                res.send(err);
+            }
+            else {
+                res.status(201).send(rows);
+            }
+        });
+    }
+});
 
 });
 
@@ -96,7 +134,7 @@ function validateUser(user){
     const schema = {
         etunimi: Joi.string().min(1).max(45).required(),
         sukunimi: Joi.string().min(1).max(45).required(),
-        email: Joi.string().email(),
+        kayttajatunnus: Joi.string().min(1).max(255).required(),
         salasana: Joi.string().min(1).max(45).required()
     };
     return Joi.validate(user, schema);

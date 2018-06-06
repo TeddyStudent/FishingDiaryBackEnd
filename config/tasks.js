@@ -2,6 +2,10 @@ var db = require('./database'); //reference of database.js
  
 var Task={
 
+// *****************************************
+// FUNCTIONS NEEDED FOR ../API/TRIP SERVICES
+// *****************************************  
+
 // updated due new db model 5.6.2018
 // this method is only for testing purposes     
 getAllTrips:function(callback){
@@ -50,6 +54,37 @@ updateTrip:function(id,reissu,callback){
         reissu.l_ilma,
         reissu.l_vesi,
         id],callback);
-}
+},
+
+
+// *****************************************
+// FUNCTIONS NEEDED FOR ../API/USER SERVICES
+// ***************************************** 
+
+// updated due new db model 5.6.2018
+// this method is only for testing purposes     
+getAllUsers:function(callback){
+    return db.query("Select idtili,etunimi,sukunimi,kayttajatunnus,salasana from tili",callback);
+},
+
+// addUser - needed for registering
+addUser:function(user,callback){
+    return db.query("Insert into tili (etunimi,sukunimi,kayttajatunnus,salasana) values (?,?,?,?)",[
+        user.etunimi,
+        user.sukunimi,
+        user.kayttajatunnus,
+        user.salasana
+        ],callback);
+},
+
+// getNewUser - needed for registering, return the newly created object
+getNewUser:function(id,callback){
+    return db.query("select idtili,etunimi,sukunimi,kayttajatunnus,salasana from tili where idtili=?",[id],callback);
+},
+
+// getUserByUsername - needed for authentication, return object (password, idtili and etunimi enough?)
+// updateUser - needed if account mgmt is implemented, etunimi,sukunimi,kayttajatunnus,salasana can be modified, return object
+// deleteUser - 
+
 };
  module.exports=Task;
