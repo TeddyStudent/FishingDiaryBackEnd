@@ -101,11 +101,31 @@ updateUser:function(id,user,callback){
 // deleteUser
 deleteUser:function(id,callback){
     return db.query("delete from tili where idtili=?",[id],callback);
-}
+},
 
 // ******************************************
 // FUNCTIONS NEEDED FOR ../API/CATCH SERVICES
-// ******************************************  
+// ******************************************
+
+
+// ******************************************
+// FUNCTIONS NEEDED FOR ../API/STAT SERVICES
+// ******************************************
+
+// return statistics: count catch (CC) by species, from all trips (FAT)
+getStatCCBySpeciesFAT:function(id,callback){
+    return db.query("SELECT laji as Kalalaji, COUNT(idkalat) as Kalamäärä FROM kalat where kalat.reissu_tili_idtili=? GROUP BY laji order by COUNT(idkalat) desc",[id],callback);
+},
+
+// return statistics: count catch (CC) by places, from all trips (FAT)
+getStatCCByPlacesFAT:function(id,callback){
+    return db.query("SELECT reissu.paikka as Paikka, count(kalat.idkalat) as Kalamäärä FROM kalat, reissu where kalat.reissu_idreissu=reissu.idreissu and reissu.tili_idtili=? group by reissu.paikka order by paikka asc",[id],callback);
+},
+
+// return statistics: count catch (CC) by places and species, from all trips (FAT)
+getStatCCByPlacesAndSpeciesFAT:function(id,callback){
+    return db.query("select a.paikka as Paikka,a.laji as Laji,count(a.idreissu) as Kalamäärä from (select tili_idtili, idreissu, laji, paikka from reissu, kalat where reissu.idreissu=kalat.reissu_idreissu and tili_idtili=?) a group by idreissu,laji order by paikka asc",[id],callback);
+}
 
 };
  module.exports=Task;

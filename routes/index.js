@@ -4,6 +4,7 @@ const express = require('express')
 router.use('/api/user', require('./user'));
 router.use('/api/trip', require('./trip'));
 router.use('/api/catch', require('./catch'));
+router.use('/api/stat', require('./stat'));
 
 router.get('/', function(req, res) {
   res.send('Hello World!');
