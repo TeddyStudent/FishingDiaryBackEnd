@@ -1,30 +1,26 @@
 # This file is used to create test data to the fishing diary database
-# Last modifed 19.5.2018 by TeddyStudent
+# Last modifed 5.6.2018 by TeddyStudent
 # tili.kayttajatunnus removed
 
-insert into tili (etunimi,sukunimi,email,salasana) values ('Teddy', 'Student', 'teddystudent@something.com', 'teddypwd');
-insert into tili (etunimi,sukunimi,email,salasana) values ('User1', 'Surname1', 'user1@something.com', 'user1pwd');
-insert into tili (etunimi,sukunimi,email,salasana) values ('User2', 'Surname2', 'user2@something.com', 'user2pwd');
-insert into tili (etunimi,sukunimi,email,salasana) values ('User3', 'Surname3', 'user3@something.com', 'user3pwd');
-insert into tili (etunimi,sukunimi,email,salasana) values ('User4', 'Surname4', 'user4@something.com', 'user4pwd');
+insert into tili (etunimi,sukunimi,kayttajatunnus,salasana) values ('Teddy', 'Student', 'TeddyStudent', 'teddypwd');
+insert into tili (etunimi,sukunimi,kayttajatunnus,salasana) values ('User1', 'Surname1', 'user1id', 'user1pwd');
+insert into tili (etunimi,sukunimi,kayttajatunnus,salasana) values ('User2', 'Surname2', 'user2id', 'user2pwd');
 
-insert into kalareissu (pvm,paikka,tili_idtili) values (curdate(), 'Längelmävesi', 1);
-insert into kalareissu (pvm,paikka,tili_idtili) values (curdate(), 'Näsijärvi', 1);
-insert into kalareissu (pvm,paikka,tili_idtili) values (curdate(), 'Pyhäjärvi', 1);
-insert into kalareissu (pvm,paikka,tili_idtili) values (curdate(), 'Pielinen', 2);
-insert into kalareissu (pvm,paikka,tili_idtili) values (curdate(), 'Roine', 3);
-insert into kalareissu (pvm,paikka,tili_idtili) values (curdate(), 'Pälkänevesi', 4);
+insert into reissu (pvm,paikka,saa,t_nopeus,t_suunta,l_ilma,l_vesi,tili_idtili) values (curdate(), 'Längelmävesi', 'selkeä', 4, 'Etelä', 22, 18, 1);
+insert into reissu (pvm,paikka,tili_idtili) values (curdate(), 'Näsijärvi', 1);
+insert into reissu (pvm,paikka,tili_idtili) values (curdate(), 'Roine', 2);
+insert into reissu (pvm,paikka,tili_idtili) values (curdate(), 'Pälkänevesi', 3);
 
 insert into kalalajit (nimi) values ('Ahven');
 insert into kalalajit (nimi) values ('Hauki');
 insert into kalalajit (nimi) values ('Kuha');
 insert into kalalajit (nimi) values ('Lohi');
 insert into kalalajit (nimi) values ('Taimen');
-insert into kalalajit (nimi) values ('allikkosalakka');
-insert into kalalajit (nimi) values ('ankerias');
-insert into kalalajit (nimi) values ('elaska');
-insert into kalalajit (nimi) values ('harjus');
-insert into kalalajit (nimi) values ('harmaanieriä');
+insert into kalalajit (nimi) values ('Allikkosalakka');
+insert into kalalajit (nimi) values ('Ankerias');
+insert into kalalajit (nimi) values ('Elaska');
+insert into kalalajit (nimi) values ('Harjus');
+insert into kalalajit (nimi) values ('Harmaanieriä');
 insert into kalalajit (nimi) values ('hietatokko');
 insert into kalalajit (nimi) values ('hopearuutana');
 insert into kalalajit (nimi) values ('härkäsimppu');
@@ -93,6 +89,11 @@ insert into vieheet (nimi,valmistaja,tyyppi,vari) values ('Rapala','Shad Rap','V
 insert into vieheet (nimi,valmistaja,tyyppi,vari) values ('Nils Master','Invincible','Vaappu','Muikku');
 insert into vieheet (nimi,valmistaja,tyyppi,vari) values ('Nils Master','Spearhead','Vaappu','Muikku');
 
-insert into saaliskala (pituus,paino,saantiaika,kalalajit_idkalalajit,vieheet_idvieheet,kalareissu_idkalareissu,kalareissu_tili_idtili) values (35,600,curtime(), 1, 1, 1, 1);
-insert into saaliskala (pituus,paino,saantiaika,kalalajit_idkalalajit,vieheet_idvieheet,kalareissu_idkalareissu,kalareissu_tili_idtili) values (40,750,curtime(), 1, 2, 1, 1);
-insert into saaliskala (pituus,paino,saantiaika,kalalajit_idkalalajit,vieheet_idvieheet,kalareissu_idkalareissu,kalareissu_tili_idtili) values (30,500,curtime(), 1, 2, 1, 1);
+insert into kalat (laji,paino,pituus,pyyntitapa,viehe,viehe_vari,saantiaika,reissu_idreissu,reissu_tili_idtili) values ('Ahven',600,35,'heitto','Salmo hornet','tiger',curtime(), 1, 1);
+insert into kalat (laji,paino,pituus,pyyntitapa,viehe,viehe_vari,saantiaika,reissu_idreissu,reissu_tili_idtili) values ('Ahven',450,28,'heitto','Salmo hornet','punakelta',curtime(), 1, 1);
+insert into kalat (laji,paino,pituus,pyyntitapa,viehe,viehe_vari,saantiaika,reissu_idreissu,reissu_tili_idtili) values ('Ahven',280,20,'uistelu','Salmo hornet','tiger',curtime(), 1, 1);
+insert into kalat (laji,paino,pituus,pyyntitapa,viehe,viehe_vari,saantiaika,reissu_idreissu,reissu_tili_idtili) values ('Ahven',280,20,'vertikaali','jigi','kelta',curtime(), 2, 1);
+insert into kalat (laji,paino,pituus,pyyntitapa,viehe,viehe_vari,saantiaika,reissu_idreissu,reissu_tili_idtili) values ('Ahven',280,20,'uistelu','Rapala CD','salakka',curtime(), 2, 1);
+insert into kalat (laji,paino,pituus,pyyntitapa,viehe,viehe_vari,saantiaika,reissu_idreissu,reissu_tili_idtili) values ('Ahven',600,35,'heitto','Lotto','punakulta',curtime(), 3, 2);
+insert into kalat (laji,paino,pituus,pyyntitapa,viehe,viehe_vari,saantiaika,reissu_idreissu,reissu_tili_idtili) values ('Ahven',600,35,'heitto','Lotto','punakulta',curtime(), 4, 3);
+
