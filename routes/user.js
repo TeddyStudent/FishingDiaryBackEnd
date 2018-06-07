@@ -16,10 +16,6 @@ router.post('/login',(req,res) => {
             res.send(err);
         }
         else {
-            console.log('ktun: ' + ktun);
-            console.log('ssana: ' + ssana);
-            console.log('rows.tunnus: ' + rows[0].kayttajatunnus);
-            console.log('rows.sana: ' + rows[0].salasana);
             //user was found, if username or pwd does not match return error (401?) else return user data
             if (ktun != rows[0].kayttajatunnus || ssana != rows[0].salasana) {
                 res.status(401).send(err);
