@@ -15,7 +15,7 @@ getAllTrips:function(callback){
 // updated due new db model 5.6.2018
 // should return all trips from a certain user
 getTripById:function(id,callback){
-    return db.query("select idreissu,pvm,paikka,saa,t_nopeus,t_suunta,l_ilma,l_vesi,tili_idtili from reissu where tili_idtili=?",[id],callback);
+    return db.query("select idreissu,pvm,paikka,saa,t_nopeus,t_suunta,l_ilma,l_vesi,tili_idtili from reissu where tili_idtili=? order by pvm desc",[id],callback);
 },
 
 // updated due new db model 5.6.2018
@@ -106,6 +106,54 @@ deleteUser:function(id,callback){
 // ******************************************
 // FUNCTIONS NEEDED FOR ../API/CATCH SERVICES
 // ******************************************
+
+// return all catches from a certain user
+getCatchByUserId:function(id,callback){
+    return db.query("select idkalat,laji,paino,pituus,pyyntitapa,viehe,viehe_vari,saantiaika,reissu_idreissu,reissu_tili_idtili from kalat where reissu_tili_idtili=? order by saantiaika asc",[id],callback);
+},
+
+// return all catches from a certain trip
+getCatchByTripId:function(id,callback){
+    return db.query("select idkalat,laji,paino,pituus,pyyntitapa,viehe,viehe_vari,saantiaika,reissu_idreissu,reissu_tili_idtili from kalat where reissu_idreissu=? order by saantiaika asc",[id],callback);
+},
+
+// add new catch
+addCatch:function(kala,callback){
+    return db.query("Insert into kalat (laji,paino,pituus,pyyntitapa,viehe,viehe_vari,saantiaika,reissu_idreissu,reissu_tili_idtili) values (?,?,?,?,?,?,?,?,?)",[
+        kala.laji,
+        kala.paino,
+        kala.pituus,
+        kala.pyyntitapa,
+        kala.viehe,
+        kala.viehe_vari,
+        kala.saantiaika,
+        kala.reissu_idreissu,
+        kala.reissu_tili_idtili
+        ],callback);
+},
+
+// should return newly created catch
+getNewTrip:function(id,callback){
+    return db.query("select idkalat,laji,paino,pituus,pyyntitapa,viehe,viehe_vari,saantiaika,reissu_idreissu,reissu_tili_idtili from kalat where idkalat=?",[id],callback);
+},
+
+// update Catch
+updateCatch:function(id,kala,callback){
+    return db.query("update kalat set laji=?, paino=?, pituus=?, pyyntitapa=?, viehe=?, viehe_vari=?, saantiaika=? where idkalat=?",[
+        kala.laji,
+        kala.paino,
+        kala.pituus,
+        kala.pyyntitapa,
+        kala.viehe,
+        kala.viehe_vari,
+        kala.saantiaika,
+        id],callback);
+},
+
+// delete catch
+deleteCatch:function(id,callback){
+    return db.query("delete from kalat where idkalat=?",[id],callback);
+},
 
 
 // ******************************************

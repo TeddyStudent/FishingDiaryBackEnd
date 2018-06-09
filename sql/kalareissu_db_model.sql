@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `kalareissut`.`kalat` (
   `Pyyntitapa` VARCHAR(45) NULL,
   `viehe` VARCHAR(45) NULL,
   `viehe_vari` VARCHAR(45) NULL,
-  `saantiaika` DATETIME NULL DEFAULT NULL,
+  `saantiaika` TIME NULL DEFAULT NULL,
   `reissu_idreissu` INT NOT NULL,
   `reissu_tili_idtili` INT NOT NULL,
   PRIMARY KEY (`idkalat`, `reissu_idreissu`, `reissu_tili_idtili`),
