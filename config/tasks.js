@@ -133,7 +133,7 @@ addCatch:function(kala,callback){
 },
 
 // should return newly created catch
-getNewTrip:function(id,callback){
+getNewCatch:function(id,callback){
     return db.query("select idkalat,laji,paino,pituus,pyyntitapa,viehe,viehe_vari,saantiaika,reissu_idreissu,reissu_tili_idtili from kalat where idkalat=?",[id],callback);
 },
 
