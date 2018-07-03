@@ -38,7 +38,7 @@ router.get('/',(req,res) => {
 			res.send(err);
 		}
 		else {
-			res.send(rows);
+            res.send(rows);
 		}
 	});
 });
@@ -51,7 +51,11 @@ router.get('/:userId',(req,res) => {
             res.send(err);
         }
         else {
-            res.send(rows);
+            if(rows.length==0){
+                res.status(404).send(err);
+            } else {
+                res.send(rows);
+            }
         }
     });
 });
