@@ -16,12 +16,17 @@ router.post('/login',(req,res) => {
             res.send(err);
         }
         else {
-            //user was found, if username or pwd does not match return error (401?) else return user data
-            if (ktun != rows[0].kayttajatunnus || ssana != rows[0].salasana) {
+            //if query returned zero rows return 401 (user was not found with given kayttajatunnus)
+            if (rows.length==0) {
                 res.status(401).send(err);
-            }
-            else {
-                res.status(200).send(rows);
+            } else {
+                //user was found, if pwd does not match return error (401) else return user data
+                if (ssana != rows[0].salasana) {
+                    res.status(401).send(err);
+                }
+                else {
+                    res.status(200).send(rows);
+                }
             } 
         }    
     });
